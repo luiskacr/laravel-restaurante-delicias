@@ -64,9 +64,33 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Ordenes' ? 'active' : '' }}" href="#">
+                        <i class="bi bi-wallet-fill"></i>
+                        Ordenes
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Productos' ? 'active' : '' }}" href="{{ route('products.index') }}">
                         <svg class="bi"><use xlink:href="#cart"/></svg>
                         Productos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Categorias' ? 'active' : '' }}" href="{{ route('categories.index') }}">
+                        <i class="bi bi-bookshelf"></i>
+                        Categorias
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Contacto' ? 'active' : '' }}" href="{{route('contact.index')}}">
+                        <i class="bi bi-file-earmark-person-fill"></i>
+                        Contacto
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Encuentas' ? 'active' : '' }}" href="#">
+                        <i class="bi bi-card-checklist"></i>
+                        Encuestas
                     </a>
                 </li>
             </ul>

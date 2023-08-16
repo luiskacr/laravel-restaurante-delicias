@@ -1,3 +1,4 @@
+<!-- Delete Partials -->
 <div class="modal " id="myModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -16,7 +17,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     let token = '{{ csrf_token() }}';
@@ -40,14 +40,12 @@
                 if(result.ok){
                     location.reload();
                 }else{
-                    console.log(result)
-                    alert('Error')
                     myModal.hide();
+                    location.reload();
                 }
             })
         }
 
     }
-
 
 </script>

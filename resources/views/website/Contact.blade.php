@@ -4,6 +4,11 @@
 @section('content')
 
     <div class="container mt-5">
+        @if (session('success'))
+            <div class="alert alert-primary" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <h1 class="mb-4">Formulario de Contacto</h1>
         <form action="{{ route('website.contact.store') }}" method="post">
             @csrf

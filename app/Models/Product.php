@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -18,6 +19,8 @@ class Product extends Model
         'name',
         'description',
         'price',
+        'image',
+        'category',
     ];
 
     /**
@@ -27,5 +30,16 @@ class Product extends Model
      */
     protected $casts = [
         'price' => 'integer',
+        'category' => 'integer',
     ];
+
+    /**
+     * Return a Relation Category
+     *
+     * @return BelongsTo
+     */
+    public function categories():BelongsTo
+    {
+        return $this->belongsTo(Category::class,'category','id');
+    }
 }

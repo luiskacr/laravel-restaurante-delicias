@@ -7,6 +7,14 @@
 
 
 @section('content')
+    <style>
+        .avatar {
+            vertical-align: middle;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    </style>
     <div class="card">
         <div class="card-header">
             <div class="container-fluid">
@@ -28,6 +36,7 @@
                     <thead>
                         <tr>
                             <th scope="col">#</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Description</th>
                             <th scope="col">Precio</th>
@@ -37,7 +46,7 @@
                     <tbody>
                         @if( $products->isEmpty() )
                             <tr>
-                                <th colspan="5">
+                                <th colspan="6">
                                     <div class="text-center">
                                         Actualmente no posee Productos
                                     </div>
@@ -45,8 +54,9 @@
                             </tr>
                         @else
                             @foreach($products as $product)
-                                <tr>
+                                <tr class="align-middle">
                                     <th>{{ $product->id }}</th>
+                                    <th> <img src="{{  $product->image != null ? asset($product->image) : asset('img/default.png')  }}" alt="{{  $product->name }}" class="avatar"> </th>
                                     <th>{{ $product->name }}</th>
                                     <th>{{ $product->description }}</th>
                                     <th>₡{{ $product->price }}</th>

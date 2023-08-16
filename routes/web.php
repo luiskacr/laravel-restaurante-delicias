@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +26,6 @@ Route::group([
         Route::post('/contacto', [\App\Http\Controllers\website\ContactController::class, 'store'])->name('website.contact.store');
         Route::get('/menu', [\App\Http\Controllers\website\ProductsController::class, 'index'])->name('website.products');
 
-
         //Login
         Route::get('/login',[\App\Http\Controllers\Auth\LoginController::class,'show'])->name('login');
         Route::post('/login',[\App\Http\Controllers\Auth\LoginController::class,'login'])->name('login.post');
@@ -42,10 +43,10 @@ Route::group([
         Route::get('/',[\App\Http\Controllers\admin\HomeController::class,'show'])->name('admin.home');
         //Logout Route
         Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
-
         //Cruds
         Route::resource('products', ProductsController::class);
-
+        Route::resource('categories', CategoryController::class);
+        Route::resource('contact', ContactController::class)->only(['index','show','destroy']);
     }
 );
 

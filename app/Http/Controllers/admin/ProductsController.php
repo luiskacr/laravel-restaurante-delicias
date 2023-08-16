@@ -4,7 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -31,7 +33,7 @@ class ProductsController extends Controller
      */
     public function create():View
     {
-        return view('admin.products.create');
+        return view('admin.products.create')->with('categories',Category::all());
     }
 
     /**
@@ -49,6 +51,8 @@ class ProductsController extends Controller
                 'name'=>$request->request->get('name'),
                 'description'=>$request->request->get('description'),
                 'price'=>$request->request->getInt('price'),
+                'category' => $request->request->getInt('category'),
+                'image'=> $this->handleCreateImage($request)
             ]);
             DB::commit();
         }catch (\Exception $e){
@@ -80,7 +84,8 @@ class ProductsController extends Controller
     public function edit(int $id):View
     {
         return view('admin.products.edit')
-            ->with('product', Product::findOrFail($id) );
+            ->with('product', Product::findOrFail($id) )
+            ->with('categories', Category::all() );
     }
 
     /**
@@ -94,15 +99,20 @@ class ProductsController extends Controller
     {
         DB::beginTransaction();
         try{
-
-            Product::whereId($id)->update([
+            $product = Product::findOrFail($id);
+            $product->update([
                 'name'=>$request->request->get('name'),
                 'description'=>$request->request->get('description'),
                 'price'=>$request->request->getInt('price'),
+                'category' => $request->request->getInt('category'),
+                'image'=> $this->handleUpdateImage($product->image , $request)
             ]);
+
             DB::commit();
         }catch (\Exception $e){
             DB::rollback();
+
+            toastr()->error($e->getMessage(), 'Error');
 
             return redirect()->route('products.edit', $id);
         }
@@ -120,6 +130,9 @@ class ProductsController extends Controller
         DB::beginTransaction();
         try{
             $product = Product::findOrFail($id);
+
+            $this->handleDeleteImage(public_path($product->image));
+
             $product->delete();
 
             DB::commit();
@@ -129,5 +142,53 @@ class ProductsController extends Controller
             return response(['message' => $e->getMessage()], 500);;
         }
         return response(['message' => 'ok'], 200);
+    }
+
+    /**
+     * @param string|null $oldImage
+     * @param Request $request
+     * @return string|null
+     */
+    private function handleUpdateImage(string|null $oldImage, Request $request):string|null
+    {
+        $oldImage != null
+            ? $this->handleDeleteImage($oldImage)
+            : '';
+
+        return $this->handleCreateImage($request);
+    }
+
+    /**
+     * Validate if the Request Have an image an storage
+     *
+     * @param Request $request
+     * @return string|null
+     */
+    private function handleCreateImage(Request $request):string|null
+    {
+        if($request->hasFile('image')){
+
+            $file = $request->file('image');
+            $destinationPath = 'img/products/';
+            $filename = time() . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $request->get('name'))).'.'. $file->extension();
+            $uploadSuccess = $request->file('image')->move($destinationPath,$filename);
+
+            return $destinationPath . $filename;
+        }else{
+            return null;
+        }
+    }
+
+    /**
+     * Delete the Image if Exists
+     *
+     * @param string $imagePath
+     * @return void
+     */
+    private function handleDeleteImage(string $imagePath): void
+    {
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
     }
 }

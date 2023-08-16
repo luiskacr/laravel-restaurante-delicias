@@ -7,6 +7,7 @@
 
 
 @section('content')
+
     <div class="card">
         <div class="card-header">
             <div class="container-fluid">
@@ -38,6 +39,17 @@
                             <input type="number" class="form-control" id="price" name="price" value="{{ $product->price }}" disabled >
                         </div>
                     </div>
+                    <div class="col-12 col-md-6 form-group mt-3">
+                        <label for="description">Categoria</label>
+                        <input type="text" class="form-control" id="description" name="description"  value="{{ $product->categories->name }}" disabled >
+                    </div>
+                    @if($product->image != null)
+                        <div class="col-12 col-md-6 form-group mt-3">
+                            <label for="description">Imagen</label>
+                            <br>
+                            <img src="{{ asset($product->image) }}"  class="rounded img-thumbnail" style="height: 400px" alt="{{ $product->name  }}">
+                        </div>
+                    @endif
                 </div>
 
             </div>
