@@ -1,5 +1,12 @@
+
+<div class="mapouter">
+    <div class="gmap_canvas">
+        <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=universidad fidelitas san pedro&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+    </div>
+</div>
 <!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted mt-4">
+<footer class="text-center text-lg-start bg-light text-muted">
     <!-- Section: Links  -->
     <section class="pt-3">
       <div class="container text-center text-md-start mt-5">
@@ -46,10 +53,10 @@
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
             <!-- Links -->
             <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
-            <p><i class="fas fa-home me-3"></i>Calle Siles 203, Santa Marta, SJ</p>
-            <p><i class="fas fa-envelope me-3"></i>correodelestudiante@ufide.ac.cr</p>
-            <p><i class="fas fa-phone me-3"></i> 86068600 </p>
-            <p><i class="fas fa-print me-3"></i> 2206-8600</p>
+            <p><i class="bi bi-house"></i> Calle Siles 203, Santa Marta, SJ</p>
+            <p><i class="bi bi-envelope"></i> correodelestudiante@ufide.ac.cr</p>
+            <p><i class="bi bi-phone"></i> 86068600 </p>
+            <p><i class="bi bi-telephone"></i> 2206-8600</p>
           </div>
           <!-- Grid column -->
         </div>
@@ -63,5 +70,5 @@
       ©{{ now()->year }}  Ambiente Web Cliente/Servidor
     </div>
     <!-- Copyright -->
-  </footer>
+</footer>
   <!-- Footer -->

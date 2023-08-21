@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ContactController;
+use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,14 @@ Route::group([
         Route::post('/contacto', [\App\Http\Controllers\website\ContactController::class, 'store'])->name('website.contact.store');
         Route::get('/menu', [\App\Http\Controllers\website\ProductsController::class, 'index'])->name('website.products');
 
+        //Cart
+        Route::get('/cart',[\App\Http\Controllers\website\CartController::class, 'showCart'])->name('cart.show');
+        Route::post('/cart/add',[\App\Http\Controllers\website\CartController::class, 'addItemToCart'])->name('cart.add');
+        Route::get('/cart/delete/{id}',[\App\Http\Controllers\website\CartController::class, 'deleteItemToCart'])->name('cart.delete');
+        Route::get('/checkout',[\App\Http\Controllers\website\CartController::class, 'checkOut'])->name('cart.checkout');
+        Route::post('/finish-order',[\App\Http\Controllers\website\CartController::class, 'finishOrder'])->name('cart.finish.order');
+        Route::get('/thanks/{id}',[\App\Http\Controllers\website\CartController::class, 'thanks'])->name('cart.thanks');
+
         //Login
         Route::get('/login',[\App\Http\Controllers\Auth\LoginController::class,'show'])->name('login');
         Route::post('/login',[\App\Http\Controllers\Auth\LoginController::class,'login'])->name('login.post');
@@ -43,10 +52,12 @@ Route::group([
         Route::get('/',[\App\Http\Controllers\admin\HomeController::class,'show'])->name('admin.home');
         //Logout Route
         Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
+
         //Cruds
         Route::resource('products', ProductsController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('contact', ContactController::class)->only(['index','show','destroy']);
+        Route::resource('orders', OrdersController::class)->only(['index','show']);
     }
 );
 
