@@ -1,5 +1,9 @@
 @extends('website.template')
 
+@php
+    $DisplayShopping = false
+@endphp
+
 @section('content')
     <div class="container">
         <div class="row mt-5 mb-5">
@@ -15,7 +19,7 @@
                             <nav class="nav nav-pills nav-fill">
                                 <a class="nav-link tab-pills " href="{{ route('cart.show') }}"><i class="bi bi-cart-check-fill m-1"></i>Carrito</a>
                                 <a class="nav-link tab-pills" href="#"><i class="bi bi-receipt m-1"></i>Check Out</a>
-                                <a class="nav-link tab-pills" href="#"><i class="bi bi-emoji-laughing m-1"></i>Finalizar</a>
+                                <a class="nav-link tab-pills disabled" href="#"><i class="bi bi-emoji-laughing m-1"></i>Finalizar</a>
                             </nav>
                         </div>
                         <div class="card-body">

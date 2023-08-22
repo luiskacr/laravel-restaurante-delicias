@@ -24,7 +24,7 @@ class ContactController extends Controller
 
         return response()
             ->redirectToRoute('website.contact')
-            ->with('success', '¡Gracias por contactarnos! Tu mensaje ha sido enviado correctamente.');
+            ->with('success_message', '¡Gracias por contactarnos! Tu mensaje ha sido enviado correctamente.');
 
     }
 }

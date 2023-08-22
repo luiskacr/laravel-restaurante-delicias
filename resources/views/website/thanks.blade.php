@@ -1,5 +1,9 @@
 @extends('website.template')
 
+@php
+    $DisplayShopping = false
+@endphp
+
 @push('page-css')
     <style>
         #total {

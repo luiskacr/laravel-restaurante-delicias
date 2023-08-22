@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\ProductsController;
+use App\Http\Controllers\admin\SurveyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +27,9 @@ Route::group([
         Route::get('/contacto', [\App\Http\Controllers\website\ContactController::class, 'index'])->name('website.contact');
         Route::post('/contacto', [\App\Http\Controllers\website\ContactController::class, 'store'])->name('website.contact.store');
         Route::get('/menu', [\App\Http\Controllers\website\ProductsController::class, 'index'])->name('website.products');
+        Route::get('/product/{id}', [\App\Http\Controllers\website\ProductsController::class, 'show'])->name('product.show');
+        Route::get('/survey', [\App\Http\Controllers\website\SurveyController::class, 'index'])->name('survey.index');
+        Route::post('/survey', [\App\Http\Controllers\website\SurveyController::class, 'create'])->name('survey.create');
 
         //Cart
         Route::get('/cart',[\App\Http\Controllers\website\CartController::class, 'showCart'])->name('cart.show');
@@ -58,6 +62,7 @@ Route::group([
         Route::resource('categories', CategoryController::class);
         Route::resource('contact', ContactController::class)->only(['index','show','destroy']);
         Route::resource('orders', OrdersController::class)->only(['index','show']);
+        Route::resource('surveys', SurveyController::class)->only(['index','show']);
     }
 );
 

@@ -88,7 +88,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Encuentas' ? 'active' : '' }}" href="#">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Encuestas' ? 'active' : '' }}" href="{{ route('surveys.index') }}">
                         <i class="bi bi-card-checklist"></i>
                         Encuestas
                     </a>

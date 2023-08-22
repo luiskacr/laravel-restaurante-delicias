@@ -1,5 +1,9 @@
 @extends('website.template')
 
+@php
+$DisplayShopping = false
+@endphp
+
 @section('content')
 
     <div class="container">
@@ -10,8 +14,8 @@
                         <div class="card-header">
                             <nav class="nav nav-pills nav-fill">
                                 <a class="nav-link tab-pills " href="#"><i class="bi bi-cart-check-fill m-1"></i>Carrito</a>
-                                <a class="nav-link tab-pills" href="#"><i class="bi bi-receipt m-1"></i>Check Out</a>
-                                <a class="nav-link tab-pills" href="#"><i class="bi bi-emoji-laughing m-1"></i>Finalizar</a>
+                                <a class="nav-link tab-pills disabled" href="#"><i class="bi bi-receipt m-1"></i>Check Out</a>
+                                <a class="nav-link tab-pills disabled" href="#"><i class="bi bi-emoji-laughing m-1"></i>Finalizar</a>
                             </nav>
                         </div>
                         <div class="card-body">
@@ -35,7 +39,7 @@
                                                 @foreach(Cart::getContent() as $row)
                                                     <tr class="basket__item">
                                                         <td class="align-middle"><a href="{{ route('cart.delete', $row->id) }}"> <i class="bi bi-x" style="color: red; font-size: 1.5rem"></i></a></td>
-                                                        <td class="align-middle"> <img src="{{ asset($row->attributes['image']) }}" class="img-fluid cart-img" alt="{{ $row->name }}"></td>
+                                                        <td class="align-middle"> <img src="{{ asset($row->attributes['image'] != null ? $row->attributes['image'] : asset('img/default.png') ) }}" class="img-fluid cart-img" alt="{{ $row->name }}"></td>
                                                         <td class="align-middle">{{ $row->name }}</td>
                                                         <td class="align-middle text-end price">₡{{$row->price}}</td>
                                                         <td class="align-middle count">
