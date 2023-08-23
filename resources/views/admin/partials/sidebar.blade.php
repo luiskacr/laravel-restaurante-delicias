@@ -93,6 +93,12 @@
                         Encuestas
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center gap-2 {{ $title == 'Suscripciones' ? 'active' : '' }}" href="{{ route('subscribe.index') }}">
+                        <i class="bi bi-newspaper"></i>
+                        Suscripciones
+                    </a>
+                </li>
             </ul>
 
             <hr class="my-3">

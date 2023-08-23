@@ -1,7 +1,8 @@
 @extends('website.template')
 
 @php
-    $DisplayShopping = false
+    $DisplayShopping = false;
+    $showNavbar = false;
 @endphp
 
 @push('page-css')

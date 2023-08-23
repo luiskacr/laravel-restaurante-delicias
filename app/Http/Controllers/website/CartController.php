@@ -50,6 +50,21 @@ class CartController extends Controller
         return Redirect::back();
     }
 
+    public function updateProduct(Request $request)
+    {
+        try {
+            \Cart::update($request->request->getInt('id'), array(
+                'quantity' => array(
+                    'relative' => false,
+                    'value' => $request->request->getInt('quantity')
+                ),
+            ));
+        }catch (\Exception $exception){
+            return response()->json(['message' => $exception->getMessage()],500);
+        }
+        return response()->json(['message' => 'ok']);
+    }
+
     public function deleteItemToCart(int $id)
     {
        \Cart::remove($id);

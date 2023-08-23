@@ -1,7 +1,8 @@
 @extends('website.template')
 
 @php
-    $DisplayShopping = true
+    $DisplayShopping = true;
+    $showNavbar = true;
 @endphp
 
 @push('page-css')
@@ -57,13 +58,6 @@
             }
         }
 
-        .call-to-action {
-            position: relative;
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url("{{ asset('img/restaurant2.jpg') }}") no-repeat center center;
-            background-size: cover;
-            padding-top: 7rem;
-            padding-bottom: 7rem;
-        }
 
     </style>
 @endpush
@@ -136,7 +130,7 @@
     <!-- Testimonials-->
     <section class="testimonials text-center bg-light">
         <div class="container">
-            <h2 class="mb-5">Nuestro Equipo</h2>
+            <h2 class="mb-5 fw-bold">Nuestro Equipo</h2>
             <div class="row">
                 <div class="col-lg-4">
                     <div class="testimonial-item mx-auto mb-5 mb-lg-0">
@@ -161,25 +155,6 @@
                 </div>
             </div>
         </div>
-
     </section>
-    <!-- Call to Action-->
-    <section class="call-to-action text-white text-center" id="signup">
-        <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    <h2 class="mb-4">Recibe ofertas exclusivas, noticias sobre nosotros y más al suscribirte.!</h2>
-                    <form class="form-subscribe" id="contactFormFooter" data-sb-form-api-token="API_TOKEN">
-                        <div class="row">
-                            <div class="col">
-                                <input class="form-control form-control-lg" id="emailAddressBelow" type="email" placeholder="Correo Electronico"  />
-                            </div>
-                            <div class="col-auto"><button class="btn btn-primary btn-lg " id="submitButton" type="submit">Enviar</button></div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('website.partials.subscribe')
 @endsection

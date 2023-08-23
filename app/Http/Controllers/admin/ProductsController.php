@@ -11,6 +11,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
 
 
 class ProductsController extends Controller
@@ -151,33 +152,40 @@ class ProductsController extends Controller
      */
     private function handleUpdateImage(string|null $oldImage, Request $request):string|null
     {
-        $oldImage != null
+        ($oldImage != null and $request->file('image') != null)
             ? $this->handleDeleteImage($oldImage)
             : '';
 
-        return $this->handleCreateImage($request);
+        return $request->file('image') != null
+            ? $this->handleCreateImage($request)
+            : $oldImage;
     }
 
     /**
-     * Validate if the Request Have an image an storage
+     * Validate if the Request Have an image a storage
      *
      * @param Request $request
      * @return string|null
      */
     private function handleCreateImage(Request $request):string|null
     {
-        if($request->hasFile('image')){
-
+        if ($request->hasFile('image')) {
             $file = $request->file('image');
             $destinationPath = 'img/products/';
-            $filename = time() . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $request->get('name'))).'.'. $file->extension();
-            $uploadSuccess = $request->file('image')->move($destinationPath,$filename);
+            $filename = time() . strtolower(preg_replace('/[^a-zA-Z0-9]/', '', $request->get('name'))) . '.' . $file->extension();
+            $uploadPath = $destinationPath . $filename;
 
-            return $destinationPath . $filename;
-        }else{
+            $file->move($destinationPath, $filename);
+
+            $optimizerChain = OptimizerChainFactory::create();
+            $optimizerChain->optimize($uploadPath);
+
+            return $uploadPath;
+        } else {
             return null;
         }
     }
+
 
     /**
      * Delete the Image if Exists

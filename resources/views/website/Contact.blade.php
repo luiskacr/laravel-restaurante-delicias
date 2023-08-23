@@ -1,11 +1,22 @@
 @extends('website.template')
 
 @php
-    $DisplayShopping = true
+    $DisplayShopping = true;
+    $showNavbar = true;
 @endphp
 
+@push('page-css')
+    <style>
+        img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+@endpush
 
 @section('content')
+    <img id="banner" src="{{ asset('img/bar.jpg') }}" class="img-fluid" alt="menu">
     <div class="container mt-5 mb-5">
         @if (session('success_message'))
             <div class="alert alert-primary" role="alert">
@@ -17,7 +28,7 @@
                     {{ session('error_message') }}
                 </div>
             @endif
-        <h1 class="mb-4">Formulario de Contacto</h1>
+        <h1 class="mb-4 fs-1 fw-bold">Formulario de Contacto</h1>
         <form class="m-3 m-md-0" action="{{ route('website.contact.store') }}" method="post">
             @csrf
             <div class="mb-3">
@@ -63,10 +74,5 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
     </div>
-    <div class="mapouter">
-        <div class="gmap_canvas">
-            <iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                    src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=universidad fidelitas san pedro&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-        </div>
-    </div>
+    @include('website.partials.map')
 @endsection

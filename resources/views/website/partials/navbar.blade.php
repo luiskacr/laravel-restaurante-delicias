@@ -1,44 +1,41 @@
-<nav class="navbar sticky-top navbar-expand-lg bg-light" >
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{{ route('index') }}">Restaurante</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav" >
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('website.products') }}">Menu</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorias
-                    </a>
-                    @php($categories =\App\Models\Category::all())
-                    <ul class="dropdown-menu">
-                        @foreach($categories as $category)
-                            <li><a class="dropdown-item" href="#">{{ $category->name }}</a></li>
-                        @endforeach
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('website.contact') }}">Contacto</a>
-                </li>
-            </ul>
-            @if($DisplayShopping)
-                <div class="ms-auto"> <!-- Utiliza ms-auto aquí -->
-                    <div class="dropdown me-2 me-md-5 ">
-                        <a class="position-relative cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                           aria-controls="offcanvasRight">
-                            <i class="bi bi-cart-fill" style="font-size: 1.5rem;"></i>
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ Cart::getTotalQuantity() }}</span>
-                        </a>
-                    </div>
-                </div>
-            @endif
-        </div>
 
+
+<nav class="navbar sticky-top navbar-expand-lg bg-light" >
+    <div class="container-fluid" >
+        @if($showNavbar)
+            <a class="navbar-brand ms-4" href="{{ route('index') }}"><img src="{{ asset('img/logo.webp') }}" alt="logo" style="height: 60px" /></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse p-md-2 p-lg-4" id="navbarNav" >
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('website.products') }}">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ route('website.contact') }}">Contacto</a>
+                    </li>
+                </ul>
+                @if($DisplayShopping)
+                    <div class="ms-auto"> <!-- Utiliza ms-auto aquí -->
+                        <div class="dropdown me-2 me-lg-5 ">
+                            <a class="position-relative cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                               aria-controls="offcanvasRight">
+                                <i class="bi bi-cart-fill" style="font-size: 1.8rem;"></i>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ Cart::getTotalQuantity() }}</span>
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        @else
+            <div class="mx-auto p-md-2 p-lg-4">
+                <a class="navbar-brand" href="{{ route('index') }}"><img src="{{ asset('img/logo.webp') }}" alt="logo" style="height: 60px" /></a>
+            </div>
+        @endif
     </div>
+
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">

@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\ContactController;
 use App\Http\Controllers\admin\OrdersController;
 use App\Http\Controllers\admin\ProductsController;
+use App\Http\Controllers\admin\SubscribeController;
 use App\Http\Controllers\admin\SurveyController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,10 +31,12 @@ Route::group([
         Route::get('/product/{id}', [\App\Http\Controllers\website\ProductsController::class, 'show'])->name('product.show');
         Route::get('/survey', [\App\Http\Controllers\website\SurveyController::class, 'index'])->name('survey.index');
         Route::post('/survey', [\App\Http\Controllers\website\SurveyController::class, 'create'])->name('survey.create');
+        Route::post('/subscribe', [\App\Http\Controllers\website\SubscribeController::class, 'create'])->name('subscribe.create');
 
         //Cart
         Route::get('/cart',[\App\Http\Controllers\website\CartController::class, 'showCart'])->name('cart.show');
         Route::post('/cart/add',[\App\Http\Controllers\website\CartController::class, 'addItemToCart'])->name('cart.add');
+        Route::post('/cart/update',[\App\Http\Controllers\website\CartController::class, 'updateProduct'])->name('cart.update');
         Route::get('/cart/delete/{id}',[\App\Http\Controllers\website\CartController::class, 'deleteItemToCart'])->name('cart.delete');
         Route::get('/checkout',[\App\Http\Controllers\website\CartController::class, 'checkOut'])->name('cart.checkout');
         Route::post('/finish-order',[\App\Http\Controllers\website\CartController::class, 'finishOrder'])->name('cart.finish.order');
@@ -57,12 +60,17 @@ Route::group([
         //Logout Route
         Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
 
+        //Export
+        Route::get('subscribe/export/', [SubscribeController::class, 'export'])->name('subscribe.excel');
+
         //Cruds
         Route::resource('products', ProductsController::class);
         Route::resource('categories', CategoryController::class);
         Route::resource('contact', ContactController::class)->only(['index','show','destroy']);
         Route::resource('orders', OrdersController::class)->only(['index','show']);
         Route::resource('surveys', SurveyController::class)->only(['index','show']);
+        Route::resource('subscribe', SubscribeController::class)->only(['index']);
+
     }
 );
 

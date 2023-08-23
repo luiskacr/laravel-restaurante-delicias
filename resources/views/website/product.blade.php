@@ -1,7 +1,8 @@
 @extends('website.template')
 
 @php
-    $DisplayShopping = true
+    $DisplayShopping = true;
+    $showNavbar = true;
 @endphp
 
 @push('page-css')
@@ -11,13 +12,17 @@
         }
 
         img{
-            object-fit: cover;
+            object-fit: cover;`
             width:100%;
             height:100%;
         }
         .start {
             color: #FFD700;
             font-size: 20px;
+        }
+        .recommendation{
+            height: 200px;
+            background-blend-mode: multiply;
         }
     </style>
 @endpush
@@ -26,7 +31,7 @@
     <div class="container px-4 px-lg-5">
         <section class="py-5">
             <div class="container px-4 px-lg-5 my-5">
-                <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="row gx-4 gx-lg-5 align-items-center ">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{  $product->image != null ? asset($product->image) : asset('img/default.png')  }}" alt="{{ $product->name }}" /></div>
                     <div class="col-md-6">
                         <div class="small mb-1">SKU: {{ $product->id }}</div>
@@ -37,7 +42,7 @@
                         </div>
                         <p class="lead">{{ $product->description }}</p>
                         @if(Cart::get($product->id) == null)
-                            <div >
+                            <div>
                                 <form action="{{ route('cart.add') }}" method="post" >
                                     @csrf
                                     <input value="{{ $product->id }}" name="id" hidden>
@@ -62,9 +67,9 @@
     </div>
     <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 mt-5">
-            <h2 class="fw-bolder mb-4">Productos relacionados</h2>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                @if(!$relates->isEmpty())
+            @if(!$relates->isEmpty())
+                <h2 class="fw-bolder mb-4">Productos relacionados</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     @foreach($relates as $related)
                         <div class="col mb-5">
                             <div class="card h-100">
@@ -104,13 +109,16 @@
                             </div>
                         </div>
                     @endforeach
-                @else
-                    <div class="d-flex">
-                        <img class="" src="{{  asset('img/default.png')  }}" alt="" />
+                </div>
+            @else
+                <div class="col-12 mb-5">
+                    <div class="text-center">
+                        <h3 class="fs-2 fw-bold">No hay productos relacionados</h3>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
+
         </div>
     </section>
-
+    @include('website.partials.map')
 @endsection

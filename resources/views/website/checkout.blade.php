@@ -1,7 +1,8 @@
 @extends('website.template')
 
 @php
-    $DisplayShopping = false
+    $DisplayShopping = false;
+    $showNavbar = false;
 @endphp
 
 @section('content')
@@ -26,7 +27,7 @@
                             <div class="row">
                                 <div class="col-lg-8 col-12 order-last order-lg-first">
                                     <div class="row m-1">
-                                        <h4 class="mb-3">Direccion de Entrega</h4>
+                                        <h4 class="mb-3 text-primary">Direccion de Entrega</h4>
                                         <form class="needs-validation" action="{{ route('cart.finish.order') }}" method="post" >
                                             @csrf
                                             <div class="row g-3">
@@ -209,7 +210,7 @@
                         </div>
                         <div class="card-footer text-end">
                             <div class="d-flex">
-                                <a href="{{ url()->previous() }}"> <button type="button" id="back_button" class="btn btn-link">Volver</button></a>
+                                <a href="{{ url()->previous() != url()->current() ? url()->previous() : route('cart.show') }}"> <button type="button" id="back_button" class="btn btn-link">Volver</button></a>
                             </div>
                         </div>
                     </div>
@@ -235,6 +236,8 @@
 
             $('#cc-cvv').inputmask('999', { 'placeholder': '' });
         });
+
+        /* Start Province Canton and District Select filter */
 
         let district = document.getElementById('district')
         let canton = document.getElementById('canton')
@@ -285,23 +288,44 @@
             }
         });
 
+        /* End Province Canton and District Select filter */
+
+
+        /**
+         * Cart Payment Radio Button Event Listener
+         *
+         * @type {HTMLElement}
+         */
         let credit = document.getElementById('credit');
         credit.addEventListener('change', ()=> {
             showCartPayment()
             cash.checked = false;
         });
 
+        /**
+         * Cash Payment Radio Button Event Listener
+         *
+         * @type {HTMLElement}
+         */
         let cash = document.getElementById('cash');
         cash.addEventListener('change', ()=> {
             hideCartPayment()
             credit.checked = false;
         });
 
+        /**
+         * Hide Cart Payment Option
+         *
+         */
         function hideCartPayment()
         {
             document.getElementById('hold_cart').style.display = 'none';
         }
 
+        /**
+         * Show Cart Payment Option
+         *
+         */
         function showCartPayment(){
             document.getElementById('hold_cart').style.display = '';
         }
