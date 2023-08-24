@@ -23,7 +23,7 @@ class SubscribeController extends Controller
         ]);
 
         $subscribe = Subscribe::where('email', '=',$validated['email'] )->get();
-        if($subscribe != null)
+        if($subscribe == null)
         {
             return response()->json(['message' => 'ok'],406);
         }
