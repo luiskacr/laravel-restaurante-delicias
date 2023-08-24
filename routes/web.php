@@ -58,7 +58,7 @@ Route::group([
         //Home Route
         Route::get('/',[\App\Http\Controllers\admin\HomeController::class,'show'])->name('admin.home');
         //Logout Route
-        Route::get('/logout',[\App\Http\Controllers\Auth\LoginController::class,'logout'])->name('logout');
+        Route::get('/logout',[\App\Http\Controllers\auth\LoginController::class,'logout'])->name('logout');
 
         //Export
         Route::get('subscribe/export/', [SubscribeController::class, 'export'])->name('subscribe.excel');
