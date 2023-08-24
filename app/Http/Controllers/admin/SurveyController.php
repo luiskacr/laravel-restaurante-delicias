@@ -20,4 +20,14 @@ class SurveyController extends Controller
         return view('admin.survey.index')->with('surveys', Survey::all());
     }
 
+    /**
+     * Display a specifict Survey
+     *
+     * @return View
+     */
+    public function show(int $id):View
+    {
+        return view('admin.survey.show')->with('survey', Survey::findOrFail($id));
+    }
+
 }
