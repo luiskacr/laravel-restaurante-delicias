@@ -21,6 +21,11 @@
 <script>
     let token = '{{ csrf_token() }}';
 
+    /**
+     * Delete any model function
+     *
+     * @param route
+     */
     function del(route) {
         const myModal = new bootstrap.Modal('#myModal', {})
         const modalToggle = document.getElementById('myModal')

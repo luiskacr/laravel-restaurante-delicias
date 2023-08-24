@@ -23,7 +23,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Correo</th>
-                        <th scope="col">Fecha Creacion</th>
+                        <th scope="col">Fecha Creación</th>
                         <th scope="col">Acciones</th>
                     </tr>
                     </thead>

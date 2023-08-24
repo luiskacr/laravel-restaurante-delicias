@@ -1,8 +1,8 @@
 @extends('admin.template')
 
 @php
-    $title = 'Categorias';
-    $breadcrumbs = [ 'Inicio' => route('admin.home') , 'Categorias' => false];
+    $title = 'Categorías';
+    $breadcrumbs = [ 'Inicio' => route('admin.home') , 'Categorías' => false];
 @endphp
 
 
@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="container-fluid">
                 <div class="float-start">
-                    <h4>Categorias</h4>
+                    <h4>Categorías</h4>
                 </div>
                 <div class="float-end">
                     <a class="text-white" href="{{ route('categories.create') }}">
@@ -37,7 +37,7 @@
                         <tr>
                             <th colspan="3">
                                 <div class="text-center">
-                                    Actualmente no posee Categorias
+                                    Actualmente no posee Categorías
                                 </div>
                             </th>
                         </tr>

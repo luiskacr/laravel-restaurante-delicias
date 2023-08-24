@@ -13,27 +13,33 @@ use App\Models\Product;
 use App\Models\Province;
 use Carbon\Carbon;
 use Darryldecode\Cart\Cart;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
-use mysql_xdevapi\Exception;
 
 class CartController extends Controller
 {
-
-    protected function showCart()
+    /**
+     * Display a Cart View
+     *
+     * @return View
+     */
+    protected function showCart():View
     {
         return view('website.cart');
     }
 
     /**
+     * Add an item on the shopping cart
+     *
      * @param Request $request
      * @return RedirectResponse
      */
     function addItemToCart(Request $request):RedirectResponse
     {
-
         $product = Product::findOrFail($request->get('id'));
 
         \Cart::add(array(
@@ -50,7 +56,13 @@ class CartController extends Controller
         return Redirect::back();
     }
 
-    public function updateProduct(Request $request)
+    /**
+     * Update a Product on the shopping cart
+     *
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function updateProduct(Request $request):JsonResponse
     {
         try {
             \Cart::update($request->request->getInt('id'), array(
@@ -65,13 +77,24 @@ class CartController extends Controller
         return response()->json(['message' => 'ok']);
     }
 
-    public function deleteItemToCart(int $id)
+    /**
+     * Delete a item on the shopping cart
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function deleteItemToCart(int $id):RedirectResponse
     {
        \Cart::remove($id);
         return Redirect::back();
     }
 
-    public function checkOut()
+    /**
+     * Display the Checkout View if the shopping cart is empty redirects to shopping cart view
+     *
+     * @return View|RedirectResponse
+     */
+    public function checkOut():View|RedirectResponse
     {
         return \Cart::isEmpty()
             ? redirect()->route('cart.show')
@@ -81,7 +104,14 @@ class CartController extends Controller
                 ->with('districts', District::all());
     }
 
-    public function finishOrder(FinishOrderRequest $request)
+
+    /**
+     * Create a client, order and his details and Finish the Shopping cart process.
+     *
+     * @param FinishOrderRequest $request
+     * @return RedirectResponse
+     */
+    public function finishOrder(FinishOrderRequest $request):RedirectResponse
     {
         DB::beginTransaction();
         try {
@@ -112,9 +142,10 @@ class CartController extends Controller
             $order = Order::create([
                 'client' => $client->id,
                 'date' => Carbon::now('America/Costa_Rica')->format('Y-m-d'),
-                'payment_type' => $request->request->getBoolean('cash')   == null ? 2 : 1  ,
+                'payment_type' => $request->request->getBoolean('cash')  == null ? 1 : 2  ,
                 'cart_name' =>$request->get('cc-name') ,
                 'cart_number' =>$maskedNumber,
+                'cart_expiration' => $request->get('cc-expiration') ,
                 'subTotal' => \Cart::getSubTotal(),
                 'taxes' => \Cart::getSubTotal() * 0.13,
                 'total' => (\Cart::getSubTotal() + (\Cart::getSubTotal() * 0.13)),
@@ -141,7 +172,13 @@ class CartController extends Controller
         }
     }
 
-    public function thanks(int $id)
+    /**
+     * Display a thanks View
+     *
+     * @param int $id
+     * @return View
+     */
+    public function thanks(int $id):View
     {
         $order = Order::findOrFail($id);
 

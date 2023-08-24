@@ -1,6 +1,5 @@
 
-
-<nav class="navbar sticky-top navbar-expand-lg bg-light" >
+<nav class="navbar sticky-top navbar-expand-lg " >
     <div class="container-fluid" >
         @if($showNavbar)
             <a class="navbar-brand ms-4" href="{{ route('index') }}"><img src="{{ asset('img/logo.webp') }}" alt="logo" style="height: 60px" /></a>
@@ -11,14 +10,14 @@
             <div class="collapse navbar-collapse p-md-2 p-lg-4" id="navbarNav" >
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('website.products') }}">Menu</a>
+                        <a class="nav-link active" href="{{ route('website.products') }}">Menú</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="{{ route('website.contact') }}">Contacto</a>
                     </li>
                 </ul>
                 @if($DisplayShopping)
-                    <div class="ms-auto"> <!-- Utiliza ms-auto aquí -->
+                    <div class="ms-auto">
                         <div class="dropdown me-2 me-lg-5 ">
                             <a class="position-relative cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
                                aria-controls="offcanvasRight">
@@ -31,7 +30,7 @@
             </div>
         @else
             <div class="mx-auto p-md-2 p-lg-4">
-                <a class="navbar-brand" href="{{ route('index') }}"><img src="{{ asset('img/logo.webp') }}" alt="logo" style="height: 60px" /></a>
+                <a class="navbar-brand" href="{{ route('index') }}"><img src="{{ asset('img/logo.webp') }}" alt="logo" style="height: 80px" /></a>
             </div>
         @endif
     </div>
@@ -39,7 +38,7 @@
 </nav>
 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
-        <h4 class="offcanvas-title fw-bold mb-4" id="offcanvasRightLabel">Carrito de Compras</h4>
+        <h4 class="offcanvas-title fw-bold mb-4 text-primary" id="offcanvasRightLabel">Carrito de Compras</h4>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
@@ -57,7 +56,7 @@
                         </div>
                         <div class="col-7">
                             <div class="m-2">
-                                <h5 class="h5">{{ $row->name }}</h5>
+                                <h5 class="fs-5 fw-bold">{{ $row->name }}</h5>
                                 <p class="card-text">{{ $row->quantity }} X ₡{{$row->price}}</p>
                             </div>
                         </div>
@@ -67,7 +66,7 @@
             @endforeach
 
             <div class="mb-2">
-                <h4>Sub Total: ₡{{ Cart::getSubTotal() }}</h4>
+                <h4 class="text-primary">SubTotal: ₡{{ Cart::getSubTotal() }}</h4>
                 <div class="mt-4">
                     <a href="{{ route('cart.show') }}" class="link-offset-2 link-underline link-underline-opacity-0 ">
                         <div class="d-grid gap-2">

@@ -33,7 +33,7 @@
                                             <div class="row g-3">
                                                 <div class="col-sm-6">
                                                     <label for="firstName" class="form-label">Nombre</label>
-                                                    <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" value="" >
+                                                    <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" value="{{ old('firstName') }}" >
                                                     @error('firstName')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -43,7 +43,7 @@
 
                                                 <div class="col-sm-6">
                                                     <label for="lastName" class="form-label">Apellido</label>
-                                                    <input type="text" name="lastname" class="form-control" id="lastName" placeholder="" value="" >
+                                                    <input type="text" name="lastname" class="form-control" id="lastName" placeholder="" value="{{ old('lastname') }}" >
                                                     @error('lastname')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -52,8 +52,8 @@
                                                 </div>
 
                                                 <div class="col-12">
-                                                    <label for="email" class="form-label">Correo</label>
-                                                    <input type="email" name="email" class="form-control" id="email" placeholder="">
+                                                    <label for="email" class="form-label">Correo electrónico</label>
+                                                    <input type="email" name="email" class="form-control" id="email" placeholder="" value="{{ old('email') }}" >
                                                     @error('email')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -63,7 +63,7 @@
 
                                                 <div class="col-md-4">
                                                     <label for="province" class="form-label">Provincia</label>
-                                                    <select class="form-select"  id="province" >
+                                                    <select class="form-select"  name="province" id="province" >
                                                         <option  value="0" selected>Seleccione una Provincia</option>
                                                         @foreach($provinces as $province)
                                                             <option value="{{ $province->id }}">{{ $province->name }}</option>
@@ -73,7 +73,7 @@
 
                                                 <div class="col-md-4">
                                                     <label for="canton" class="form-label">Canton</label>
-                                                    <select class="form-select" id="canton" disabled>
+                                                    <select class="form-select" name="canton" id="canton" disabled>
                                                         <option value="0" selected>Seleccione un Canton</option>
                                                         @foreach($cantons as $canton)
                                                             <option value="{{ $canton->id }}" data-province="{{ $canton->province_id }}">{{ $canton->name }}</option>
@@ -97,8 +97,8 @@
                                                 </div>
 
                                                 <div class="col-12">
-                                                    <label for="address" class="form-label">Direccion Linea 1</label>
-                                                    <input type="text" class="form-control" name="address1" id="address" placeholder="" >
+                                                    <label for="address" class="form-label">Dirección Linea 1</label>
+                                                    <input type="text" class="form-control" name="address1" id="address" placeholder=""  value="{{ old('address1') }}">
                                                     @error('address1')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -107,8 +107,8 @@
                                                 </div>
 
                                                 <div class="col-12">
-                                                    <label for="address2" class="form-label">Direccion Linea 2 <span class="text-body-secondary">(Opcional)</span></label>
-                                                    <input type="text" class="form-control" name="address2" id="address2" placeholder="">
+                                                    <label for="address2" class="form-label">Dirección Linea 2 <span class="text-body-secondary">(Opcional)</span></label>
+                                                    <input type="text" class="form-control" name="address2" id="address2" placeholder="" value="{{ old('address2') }}">
                                                 </div>
 
                                             </div>
@@ -131,7 +131,7 @@
                                             <div id="hold_cart" class="row gy-2">
                                                 <div class="col-md-6">
                                                     <label for="cc-name"  class="form-label">Nombre de la Tarjeta</label>
-                                                    <input type="text" class="form-control" name="cc-name" id="cc-name" placeholder="" >
+                                                    <input type="text" class="form-control" name="cc-name" id="cc-name" placeholder="" value="{{ old('cc-name') }}" >
                                                     @error('cc-name')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -141,7 +141,7 @@
 
                                                 <div class="col-md-6">
                                                     <label for="cc-number" class="form-label">Número de tarjeta</label>
-                                                    <input type="text" class="form-control" name="cc-number" id="cc-number" placeholder="" >
+                                                    <input type="text" class="form-control" name="cc-number" id="cc-number" placeholder="" value="{{ old('cc-number') }}" >
                                                     @error('cc-number')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -151,7 +151,7 @@
 
                                                 <div class="col-6">
                                                     <label for="cc-expiration" class="form-label">Caducidad</label>
-                                                    <input type="text" class="form-control" name="cc-expiration" id="cc-expiration" placeholder="" >
+                                                    <input type="text" class="form-control" name="cc-expiration" id="cc-expiration" placeholder="" value="{{ old('cc-expiration') }}">
                                                     <small class="text-body-secondary">El Formato es (MM/AA)</small>
                                                     @error('cc-expiration')
                                                     <div class="text-danger">
@@ -162,7 +162,7 @@
 
                                                 <div class=" col-6">
                                                     <label for="cc-cvv" class="form-label">Código de tarjeta</label>
-                                                    <input type="text" class="form-control" name="cc-cvv" id="cc-cvv" placeholder="" >
+                                                    <input type="text" class="form-control" name="cc-cvv" id="cc-cvv" placeholder="" value="{{ old('cc-cvv') }}" >
                                                     @error('cc-cvv')
                                                     <div class="text-danger">
                                                         <div data-field="name">* {{$message}}</div>
@@ -178,30 +178,29 @@
                                 <div class="col-lg-4 col-12">
                                     <div class="mt-5">
                                         <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="text-primary">Tu Carrito</span>
-                                            <span class="badge bg-primary rounded-pill">{{ Cart::getTotalQuantity() }}</span>
+                                            <span class="text-primary">Total del Carrito</span>
                                         </h4>
                                         <ul class="list-group mb-3">
                                             @foreach(Cart::getContent() as $row)
-                                                <li class="list-group-item d-flex justify-content-between lh-sm">
+                                                <li class="list-group-item d-flex justify-content-between align-items-center lh-sm">
                                                     <div>
                                                         <h6 class="my-0">{{ $row->name }}</h6>
-                                                        <small class="text-body-secondary">{{ $row->quantity }} X ₡{{$row->price}}</small>
+                                                        <small class="text-body-secondary">{{ $row->quantity }} X ₡{{ $row->price}}</small>
                                                     </div>
-                                                    <span class="text-body-secondary">₡{{ $row->price }}</span>
+                                                    <span class="text-body-secondary ">₡{{ $row->quantity * $row->price }}</span>
                                                 </li>
                                             @endforeach
                                                 <li class="list-group-item d-flex justify-content-between">
                                                     <span>SubTotal </span>
-                                                    <strong>₡{{  (Cart::getSubTotal())   }} </strong>
+                                                    <strong class="text-primary">₡{{  (Cart::getSubTotal())   }} </strong>
                                                 </li>
                                                 <li class="list-group-item d-flex justify-content-between">
                                                     <span>Impuestos </span>
-                                                    <strong>₡{{  (Cart::getSubTotal() * 0.13) }} </strong>
+                                                    <strong class="text-primary">₡{{  (Cart::getSubTotal() * 0.13) }} </strong>
                                                 </li>
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <span>Total </span>
-                                                <strong>₡{{ Cart::getSubTotal() + (Cart::getSubTotal() * 0.13) }} IVA</strong>
+                                                <strong class="text-primary">₡{{ Cart::getSubTotal() + (Cart::getSubTotal() * 0.13) }} IVA</strong>
                                             </li>
                                         </ul>
                                     </div>
@@ -232,7 +231,7 @@
         $(document).ready(function () {
             $('#cc-number').inputmask('9999 9999 9999 9999', { 'placeholder': ' ' });
 
-            $('#cc-expiration').inputmask('31/99', { 'placeholder': 'MM/AA' });
+            $('#cc-expiration').inputmask('99/99', { 'placeholder': 'MM/AA' });
 
             $('#cc-cvv').inputmask('999', { 'placeholder': '' });
         });
@@ -329,6 +328,51 @@
         function showCartPayment(){
             document.getElementById('hold_cart').style.display = '';
         }
+
+        /**
+         * This function fill the Select Menu from Province, Canton, District.
+         *
+         * @param province
+         * @param canton
+         * @param district
+         */
+        function fillPCDSelected(province, canton, district){
+            if(province ){
+                let provinceSelector = document.getElementById('province');
+                provinceSelector.value = Number(province);
+                if(canton){
+                    let cantonSelector = document.getElementById('canton');
+                    cantonSelector.value = Number(canton)
+                    cantonSelector.disabled = false;
+
+                    let cantonOptions = cantonSelector.querySelectorAll("option");
+                    cantonOptions.forEach((option)=> {
+                        if (Number(option.getAttribute("data-province")) !== Number(province)) {
+                            option.style.display = "none";
+                        }else{
+                            option.style.display = "";
+                        }
+                    });
+
+                }
+                if(district){
+                    let districtSelector = document.getElementById('district');
+                    districtSelector.value = Number(district)
+                    districtSelector.disabled = false;
+
+                    let districtOptions = districtSelector.querySelectorAll("option");
+                    districtOptions.forEach((option)=> {
+                        if (Number(option.getAttribute("data-canton")) !== Number(canton)) {
+                            option.style.display = "none";
+                        }else{
+                            option.style.display = "";
+                        }
+                    });
+                }
+            }
+        }
+
+        fillPCDSelected('{{ old('province') }}', '{{ old('canton') }}', '{{ old('district') }}' )
     </script>
 @endpush
 

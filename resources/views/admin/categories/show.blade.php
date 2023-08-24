@@ -2,7 +2,7 @@
 
 @php
     $title = 'Categorias';
-    $breadcrumbs = [ 'Inicio' => route('admin.home') , 'Categorias' => route('categories.index'), 'Ver' => false ];
+    $breadcrumbs = [ 'Inicio' => route('admin.home') , 'Categorías' => route('categories.index'), 'Ver' => false ];
 @endphp
 
 
@@ -11,7 +11,7 @@
         <div class="card-header">
             <div class="container-fluid">
                 <div class="float-start">
-                    <h4>Categorias</h4>
+                    <h4>Categorías</h4>
                 </div>
             </div>
         </div>

@@ -186,7 +186,6 @@ class ProductsController extends Controller
         }
     }
 
-
     /**
      * Delete the Image if Exists
      *

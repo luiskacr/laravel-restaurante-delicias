@@ -4,6 +4,155 @@ body {
     font-family: Lato, Arial, sans-serif;
 }
 
+/* Custom Boostrap   */
+
+.nav-link.active {
+    color: white !important;
+}
+
+.nav-link.active:hover {
+    color: #fcbf49 !important;
+}
+
+.navbar.sticky-top.navbar-expand-lg {
+    background-color: #d62828;
+    color: white;
+}
+
+.nav-link.tab-pills {
+    color: #f77f00;
+}
+.nav-link.tab-pills.disabled {
+    color: grey;
+}
+
+.text-primary {
+    color: #f77f00 !important;
+}
+
+.text-center.text-lg-start.text-muted {
+    background-color: #d62828;
+    color: white !important;
+}
+
+.btn.btn-primary{
+    background-color: #f77f00;
+    border-color: #f77f00;
+}
+
+.btn.btn-primary:hover {
+    background-color: #fcbf49;
+    border-color: #fcbf49;
+}
+
+.btn.btn-primary:checked {
+    background-color: #fcbf49;
+    border-color: #fcbf49;
+}
+
+.btn.btn-primary:active {
+    background-color: #fcbf49;
+    border-color: #fcbf49;
+}
+
+.btn.btn-primary.btn-plus:checked {
+    background-color: #fcbf49;
+    border-color: #fcbf49;
+}
+.btn.btn-primary.btn-plus:active {
+    background-color: #fcbf49;
+    border-color: #fcbf49;
+}
+.btn.btn-primary.btn-minus:active {
+    background-color: #fcbf49;
+    border-color: #fcbf49;
+}
+
+.btn.btn-outline-primary {
+    border-color: #f77f00;
+    color: #f77f00;
+}
+
+.btn.btn-outline-primary:hover {
+    border-color: #f77f00;
+    background-color: #f77f00;
+    color: white;
+}
+.btn.btn-primary.btn-lg.disabled {
+    background: #f77f00;
+    border-color: #f77f00;
+}
+
+.btn.btn-link{
+    color: #f77f00;
+}
+
+.btn.btn-link:hover{
+    color: #fcbf49;
+}
+
+.btn.btn-link:checked{
+    color: #fcbf49;
+}
+
+.badge.bg-primary.rounded-pill {
+    color: white;
+    background-color: #f77f00 !important;
+}
+
+.form-control.form-control-lg {
+    color: #f77f00;
+}
+
+.form-check-input:checked {
+    background-color: #f77f00;
+    border-color: #f77f00;
+}
+
+.form-control::placeholder {
+    color: #fcbf49;
+    opacity: 0.6;
+}
+.form-control:focus {
+    box-shadow: 0 0 0 0.25rem #fcbf49 ;
+    border-color: #f77f00;
+}
+.form-check-input:focus{
+    box-shadow: 0 0 0 0.25rem #fcbf49 ;
+    border-color: #f77f00;
+}
+
+.text-default.mb-2.link-underline.link-underline-opacity-0 {
+    color: #f77f00;;
+}
+
+.bi.bi-cart-fill {
+    color: white;
+}
+.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger {
+    background-color: white !important;
+    color: black;
+}
+.position-absolute.top-0.start-100.translate-middle.badge.rounded-pill.bg-danger {
+    background-color: #f77f00 !important;
+    color: white;
+}
+
+.text-reset {
+    text-decoration: none;
+}
+
+.text-reset:hover{
+    border-bottom: solid;
+    border-bottom-width: 2px;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+.navbar-toggler {
+    color: white;
+}
 
 /* NavBar  */
 .nav-link.active {
@@ -16,6 +165,10 @@ body {
     margin-left: 1.5rem;
     height: 80px;
     width: 80px;
+}
+
+nav .nav-link.tab-pills {
+    font-size: 1.3rem;
 }
 
 /* Google Map */

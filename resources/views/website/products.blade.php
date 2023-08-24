@@ -29,17 +29,17 @@
     <div class="container mb-5">
         <div class="row mt-3">
             <div class="col-12 text-center mb-4 mt-4">
-                <h2 class="fs-1 fw-bold">Nuestras Categorias</h2>
+                <h2 class="fs-1 fw-bold text-primary">Nuestras Categorías</h2>
             </div>
             <div class="col-12">
-                <div class="d-flex flex-md-row flex-column justify-content-center" id="categoryBtn">
-                    <div class="p-2 mx-auto m-md-0">
+                <div class="d-flex  justify-content-center flex-wrap" id="categoryBtn">
+                    <div class="p-2 m-md-0">
                         <button type="button" id="all" class="btn btn-primary " onclick="filterCategory(0, this)">
-                            Todas las Categorias
+                            Todas las Categorías
                         </button>
                     </div>
                     @foreach($categories as $category)
-                        <div class="p-2 mx-auto m-md-0">
+                        <div class="p-2 m-md-0">
                             <button type="button" class="btn btn-outline-primary "
                                     onclick="filterCategory({{ $category->id }}, this)">{{ $category->name }}</button>
                         </div>
@@ -88,9 +88,9 @@
                                 </div>
                             @else
                                 <div class="mt-3">
-                                    <button type="button" class="btn btn-outline-primary" disabled>Ya esta en el
-                                        carrito
-                                    </button>
+                                    <a href="{{ route('cart.delete', $product->id ) }}">
+                                        <button type="button" class="btn btn-outline-primary" >Eliminar del carrito</button>
+                                    </a>
                                 </div>
                             @endif
 

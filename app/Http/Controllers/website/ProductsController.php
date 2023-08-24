@@ -5,12 +5,16 @@ namespace App\Http\Controllers\website;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 
 class ProductsController extends Controller
 {
-
-    public function index()
+    /**
+     * Display a Products/Menu view
+     *
+     * @return View
+     */
+    public function index():View
     {
 
         return view('website.products')
@@ -18,7 +22,13 @@ class ProductsController extends Controller
             ->with('categories', Category::all());
     }
 
-    public function show(int $id)
+    /**
+     * Display a specific Product View
+     *
+     * @param int $id
+     * @return View
+     */
+    public function show(int $id):View
     {
         $product = Product::findOrFail($id);
 

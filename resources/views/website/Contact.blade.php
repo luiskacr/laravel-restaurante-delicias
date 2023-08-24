@@ -28,7 +28,7 @@
                     {{ session('error_message') }}
                 </div>
             @endif
-        <h1 class="mb-4 fs-1 fw-bold">Formulario de Contacto</h1>
+        <h1 class="mb-4 fs-1 fw-bold text-primary">Formulario de Contacto</h1>
         <form class="m-3 m-md-0" action="{{ route('website.contact.store') }}" method="post">
             @csrf
             <div class="mb-3">
@@ -42,7 +42,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="email" class="form-label">Email:</label>
+                <label for="email" class="form-label">Correo electrónico:</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" >
                 @error('email')
                 <div class="text-danger">

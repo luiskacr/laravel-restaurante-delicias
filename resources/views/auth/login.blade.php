@@ -24,7 +24,7 @@
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <input type="email" id="email" name="email" class="form-control form-control-lg" />
-                            <label class="form-label" for="email">Correo Electronico</label>
+                            <label class="form-label" for="email">Correo Electrónico</label>
                         </div>
 
                         <!-- Password input -->
@@ -33,13 +33,12 @@
                             <label class="form-label" for="password">Contraseña</label>
                         </div>
 
-                        <div class="d-flex justify-content-around align-items-center mb-4">
+                        <div class="d-flex  mb-4">
                             <!-- Checkbox -->
                             <div class="form-check">
                                 <input class="form-check-input" name="remember" type="checkbox" value="" id="remember"  />
-                                <label class="form-check-label" for="remember"> Remember me </label>
+                                <label class="form-check-label" for="remember"> Recuérdame </label>
                             </div>
-                            <a href="#!">Forgot password?</a>
                         </div>
                         @if(Session::has('error'))
                             <div class="mb-3">

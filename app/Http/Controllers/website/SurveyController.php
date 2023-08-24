@@ -6,17 +6,30 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\SurveyRequest;
 use App\Models\Survey;
 use Carbon\Carbon;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class SurveyController extends Controller
 {
-    public function index()
+    /**
+     * Display a Survey View.
+     *
+     * @return View
+     */
+    public function index():View
     {
         return view('website.survey');
     }
 
-    public function create(SurveyRequest $request)
+    /**
+     * Get the Survey information and create on the database.
+     *
+     * @param SurveyRequest $request
+     * @return RedirectResponse
+     */
+    public function create(SurveyRequest $request):RedirectResponse
     {
         DB::beginTransaction();
         try {
@@ -47,6 +60,12 @@ class SurveyController extends Controller
             ->with('success_message', '¡Gracias por hacer la encuesta! Esta ha sido enviada correctamente.');
     }
 
+    /**
+     * Generate an Array of Social Media option Format
+     *
+     * @param Request $request
+     * @return array
+     */
     private function socialMedia(Request $request):array
     {
         $values = [

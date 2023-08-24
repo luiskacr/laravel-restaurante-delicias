@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('price');
             $table->string('image',150)->nullable();
             $table->foreignId('category')->references('id')->on('categories');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

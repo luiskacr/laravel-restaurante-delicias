@@ -19,14 +19,14 @@
                 <div class="form-subscribe" >
                     <div class="row">
                         <div class="col">
-                            <input class="form-control form-control-lg" id="emailAddressSubscribe" type="email"  placeholder="Correo Electronico"  />
+                            <input class="form-control form-control-lg" id="emailAddressSubscribe" type="email"  placeholder="Correo Electrónico"  />
                         </div>
                         <div class="col-auto">
                             <button class="btn btn-primary btn-lg disabled" onclick="sendSubscribe()" id="submitButton" >Enviar</button>
                         </div>
                         <div class="col-12 mt-4">
                             <div id="sendSubscribeSuccess" class="alert alert-primary alert-dismissible fade show" role="alert" style="display: none">
-                                Muchas Gracias por Subscribirse!
+                                ¡Muchas Gracias por Subscribirse!
                             </div>
                         </div>
                         <div class="col-12 mt-1">
@@ -36,12 +36,12 @@
                         </div>
                         <div class="col-12 mt-1">
                         <div id="sendSubscribeWarning" class="alert alert-warning alert-dismissible fade show" role="alert" style="display: none">
-                            Este información no corresponde a un correo.
+                            Esta información no corresponde a un correo.
                         </div>
                     </div>
                         <div class="col-12 mt-1">
                             <div id="sendSubscribeError" class="alert alert-danger alert-dismissible fade show" role="alert" style="display: none">
-                                Hubo un error interno al intentar Subscribirse!
+                                ¡Hubo un error interno al intentar Subscribirse!
                             </div>
                         </div>
                     </div>
@@ -57,6 +57,11 @@
         let route = '{{ route('subscribe.create') }}'
         let token = '{{ csrf_token() }}'
 
+        /**
+         * Active o disable a submit Button if the input is empty.
+         *
+         * @type {HTMLElement}
+         */
         let emailInput = document.getElementById('emailAddressSubscribe')
         emailInput.addEventListener('input', ()=> {
            let value = document.getElementById('emailAddressSubscribe').value
@@ -68,7 +73,10 @@
             }
         })
 
-
+        /**
+         * Send the Email subscribe to the backend.
+         *
+         */
         function sendSubscribe(){
             fetch(route,{
                 method: "POST",
@@ -110,6 +118,7 @@
                     });
                 }
                 document.getElementById('emailAddressSubscribe').value = '';
+                document.getElementById('submitButton').className = 'btn btn-primary btn-lg disabled';
             })
         }
     </script>

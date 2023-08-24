@@ -29,23 +29,23 @@
                         <div class="card-body">
                             <div class="d-flex justify-content-center">
                                 <div class="text-center">
-                                    <h2>Muchas Gracias por su compra</h2>
+                                    <h2 class="text-primary">Muchas Gracias por su compra</h2>
                                     <img src="{{ asset('img/thanks.jpg') }}" class="img-fluid" style="height: 200px" alt="">
                                     <div class="d-flex justify-content-between mt-3 ">
-                                        <h5>
-                                            <span class="fw-bold">Orden: N{{ $order->id }}</span>
-                                            <span class="fw-bold">|</span>
-                                            <span class="fw-bold">Fecha: {{ \Carbon\Carbon::parse($order->date)->format('d/m/Y') }}</span>
-                                            <span class="fw-bold">|</span>
-                                            <span class="fw-bold">Total: ₡{{ $order->total }}</span>
-                                            <span class="fw-bold">|</span>
-                                            <span class="fw-bold">Metodo de Pago: {{ $order->getPaymentType->name }}</span>
+                                        <h5 class="fw-bold " style="color: #fcbf49">
+                                            <span >Orden: N{{ $order->id }}</span>
+                                            <span >|</span>
+                                            <span >Fecha: {{ \Carbon\Carbon::parse($order->date)->format('d/m/Y') }}</span>
+                                            <span >|</span>
+                                            <span >Total: ₡{{ $order->total }}</span>
+                                            <span >|</span>
+                                            <span >Metodo de Pago: {{ $order->getPaymentType->name }}</span>
                                         </h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="container mt-3 p-lg-5">
-                                <h4>Detalle de la Order</h4>
+                                <h4 class="fw-bold text-primary text-center">Detalle de la Order</h4>
                                 <div class="table-responsive">
                                     <table class="table table-borderless p-lg-5" >
                                         <thead>
@@ -58,22 +58,22 @@
                                         @foreach($orderDetails as $orderDetail)
                                             <tr>
                                                 <th>{{ $orderDetail->getProduct->name }}</th>
-                                                <th class="text-end poditog">₡{{ $orderDetail->price }}</th>
+                                                <th class="text-end ">₡{{ $orderDetail->price }}</th>
                                             </tr>
                                         @endforeach
                                             <tr>
                                                 <th>SubTotal</th>
-                                                <th class="text-end poditog">₡{{ $order->subTotal }}</th>
+                                                <th class="text-end  text-primary">₡{{ $order->subTotal }}</th>
                                             </tr>
                                             <tr>
                                                 <th>Impuestos</th>
-                                                <th class="text-end poditog">₡{{ $order->taxes }}</th>
+                                                <th class="text-end  text-primary">₡{{ $order->taxes }}</th>
                                             </tr>
                                         </tbody>
                                         <tfoot id="total">
                                             <tr>
                                                 <th>Total</th>
-                                                <th class="text-end poditog">₡{{ $order->total }}</th>
+                                                <th class="text-end  text-primary">₡{{ $order->total }}</th>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -84,7 +84,7 @@
                         <div class="card-footer text-end">
                             <div class="d-flex">
                                 <a href="{{ route('index') }}"> <button type="button" id="back_button" class="btn btn-link">Volver a la tienda</button></a>
-                                <a href="#" class="ms-auto" ><button type="button" id="next_button" class="btn btn-primary" >Realizar Encuesta</button></a>
+                                <a href="{{ route('survey.index') }}" class="ms-auto" ><button type="button" id="next_button" class="btn btn-primary" >Realizar Encuesta</button></a>
                             </div>
                         </div>
                     </form>

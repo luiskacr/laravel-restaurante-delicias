@@ -39,18 +39,27 @@ $showNavbar = false;
                 font-weight: 700;
                 margin-right: 1px;
             }
+
+
         }
 
+        footer{
+            margin-top: 250px;
+        }
+
+        @media (max-width: 992px) {
+            footer{
+                margin-top: 0px !important;
+            }
+        }
     </style>
 @endpush
 
 
 @section('content')
-
-    <div class="container">
-        <div class="mt-5 mb-5">
-
-            <section class="mt-4 mt-4">
+    <div class="container ">
+        <div id="shopping-car" class="mt-5 mb-5">
+            <section class="mt-4 mt-4 mb-lg-5">
                 <div class="container"><div id="error-alert" style="display: none">
                         <div class="alert alert-danger mb-3" role="alert">
                             Hubo un error interno al intentar actualizar el carrito
@@ -105,20 +114,20 @@ $showNavbar = false;
 
                                     <div class="col-lg-4 col-12 mt=lg-4">
                                         <h4 class="d-flex justify-content-between align-items-center mb-3">
-                                            <span class="text-primary">Tu Carrito</span>
+                                            <span class="text-primary">Total del carrito</span>
                                         </h4>
                                         <ul class="list-group mb-3">
                                             <li class="list-group-item d-flex justify-content-between">
-                                                <span>SubTotal </span>
-                                                <strong>₡{{  (Cart::getSubTotal())   }} </strong>
+                                                <span>Subtotal </span>
+                                                <strong class="text-primary">₡{{  (Cart::getSubTotal())   }} </strong>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <span>Impuestos </span>
-                                                <strong>₡{{  (Cart::getSubTotal() * 0.13) }} </strong>
+                                                <strong class="text-primary">₡{{  (Cart::getSubTotal() * 0.13) }} </strong>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <span>Total </span>
-                                                <strong>₡{{ Cart::getSubTotal() + (Cart::getSubTotal() * 0.13) }} IVA</strong>
+                                                <strong class="text-primary">₡{{ Cart::getSubTotal() + (Cart::getSubTotal() * 0.13) }} IVA</strong>
                                             </li>
                                         </ul>
                                     </div>
@@ -127,7 +136,7 @@ $showNavbar = false;
                                 <div class="d-flex justify-content-center">
                                     <div class="">
                                         <img src="{{ asset('img/empty_car.jpg') }}" class="img-fluid" style="height: 350px" alt="">
-                                        <h4>Actuamente no posee Productos en el carrito</h4>
+                                        <h4 class="">Actualmente no posee Productos en el carrito</h4>
                                     </div>
                                 </div>
                             @endif
@@ -143,7 +152,6 @@ $showNavbar = false;
             </section>
         </div>
     </div>
-
 @endsection
 
 @push('page-js')
@@ -151,7 +159,12 @@ $showNavbar = false;
         let route = '{{ route('cart.update') }}'
         let token = '{{ csrf_token() }}'
 
-
+        /**
+         * Add a product to the shopping Cart
+         *
+         * @param id
+         * @param quantity
+         */
         function sumProduct(id,quantity){
             fetch(route,{
                 method: "POST",
@@ -168,7 +181,6 @@ $showNavbar = false;
                 })
             }).then(result =>{
                 if(result.ok){
-                    //document.getElementById('product-'+id).value = Number(quantity) + 1;
                     location.reload();
                 }else{
                     document.getElementById('error-alert').style.display = '';
@@ -179,6 +191,12 @@ $showNavbar = false;
             })
         }
 
+        /**
+         * Subtract a product to the shopping cart
+         *
+         * @param id
+         * @param quantity
+         */
         function subtractProduct(id,quantity){
             if(Number(quantity) -1 < 1){
                 let errorMessage = document.getElementById('error-alert');
@@ -209,7 +227,6 @@ $showNavbar = false;
                     })
                 }).then(result =>{
                     if(result.ok){
-                        //document.getElementById('product-'+id).value = Number(quantity) - 1;
                         location.reload();
                     }else{
                         document.getElementById('error-alert').style.display = '';
