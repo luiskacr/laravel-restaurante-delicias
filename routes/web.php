@@ -43,8 +43,8 @@ Route::group([
         Route::get('/thanks/{id}',[\App\Http\Controllers\website\CartController::class, 'thanks'])->name('cart.thanks');
 
         //Login
-        Route::get('/login',[\App\Http\Controllers\Auth\LoginController::class,'show'])->name('login');
-        Route::post('/login',[\App\Http\Controllers\Auth\LoginController::class,'login'])->name('login.post');
+        Route::get('/login',[\App\Http\Controllers\auth\LoginController::class,'show'])->name('login');
+        Route::post('/login',[\App\Http\Controllers\auth\LoginController::class,'login'])->name('login.post');
     }
 );
 
