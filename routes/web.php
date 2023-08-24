@@ -70,7 +70,6 @@ Route::group([
         Route::resource('orders', OrdersController::class)->only(['index','show']);
         Route::resource('surveys', SurveyController::class)->only(['index','show']);
         Route::resource('subscribe', SubscribeController::class)->only(['index']);
-
     }
 );
 
